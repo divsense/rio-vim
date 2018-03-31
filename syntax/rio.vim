@@ -41,7 +41,9 @@ syn region charSet start="\[" end="\]"
 
 syn match thenStream ">>>"
 syn match catchStream "!>>"
-syn match monadStream ">>="
+syn match monadStream ">>[=]"
+syn match joinStream ">>[*]"
+syn match altStream "<|>"
 syn match promiseComposition "<<>"
 syn match monadComposition "<=<"
 syn match applicativeComposition "<[*]>"
@@ -69,6 +71,8 @@ hi link charSet    Type
 hi link thenStream PreProc
 hi link catchStream PreProc
 hi link monadStream PreProc
+hi link joinStream PreProc
+hi link altStream PreProc
 hi link promiseComposition PreProc
 hi link monadComposition PreProc
 hi link applicativeComposition PreProc
