@@ -1,6 +1,6 @@
 " Vim syntax file
 " Language: Rio
-" Maintainer: Divsense
+" Maintainer: Oleg Kirichenko <https://github.com/divsense>
 " License: MIT
 "
 if exists("b:current_syntax")
@@ -8,7 +8,6 @@ if exists("b:current_syntax")
 endif
 
 syn keyword rioKeyword if else switch case default break return export output import connect
-syn keyword monadKeyword of chain from map delay
 syn keyword rioFunction map reduce head tail F T add addIndex adjust all allPass always and any
             \ anyPass ap aperture append apply applySpec applyTo ascend assoc assocPath binary bind
             \ both chain clamp clone comparator complement compose concat cond converge
@@ -34,22 +33,28 @@ syn keyword rioFunction map reduce head tail F T add addIndex adjust all allPass
             \ contains
 
 syn match rioOperator "[/.+*?&!]"
-syn match rioOperator "->"
 syn match rioDeclaration /\s*[_a-zA-Z$][a-zA-Z$_0-9]*\s*=/he=e-1
 
-syn region charSet start="\[" end="\]"
+syn region rioRegexpString     start=+/[^/*]+me=e-1 skip=+\\\\\|\\/+ end=+/[gim]\{0,2\}\s*$+ end=+/[gim]\{0,2\}\s*[;.,)\]}]+me=e-1 contains=@htmlPreproc oneline
 
-syn match thenStream ">>>"
-syn match catchStream "!>>"
-syn match monadStream ">>[=]"
-syn match joinStream ">>[*]"
-syn match altStream "<|>"
-syn match promiseComposition "<<>"
-syn match monadComposition "<=<"
-syn match applicativeComposition "<[*]>"
+syn match rioOperator    "[{}]"
+syn match rioOperator    "[()]"
+syn match rioOperator    "[\[\]]"
+syn match rioOperator    "=\{1,3}\|!==\|!=\|<\|>\|>=\|<="
+syn match rioOperator    "[;,]"
+syn match rioOperator    "\(&&\)\|\(||\)"
 
+syn match rioOperator "->"
+syn match rioOperator ">>>"
+syn match rioOperator "!>>"
+syn match rioOperator ">>[=]"
+syn match rioOperator ">>"
+syn match rioOperator "<|>"
+syn match rioOperator "<<>"
+syn match rioOperator "<=<"
+syn match rioOperator "<[*]>"
 
-syn match exprLabel "[a-zA-Z$_][a-zA-Z$_0-9]*:"he=e-1
+syn match rioNumber "-\=\<\d\+L\=\>\|0[xX][0-9a-fA-F]\+\>"
 
 syn region literal start="'" end="'"
 syn region literal start="\"" end="\""
@@ -61,21 +66,12 @@ syn region comment start="//" end="\n"
 hi link rioKeyword   Keyword
 hi link rioFunction  Function
 hi link rioOperator  Operator
+hi link rioNumber    Number
 hi link comment      Comment
 hi link literal      String
 hi link innerLiteral    Comment
-hi link exprLabel       Identifier
 hi link rioDeclaration PreProc
-hi link charSet    Type
-
-hi link thenStream PreProc
-hi link catchStream PreProc
-hi link monadStream PreProc
-hi link joinStream PreProc
-hi link altStream PreProc
-hi link promiseComposition PreProc
-hi link monadComposition PreProc
-hi link applicativeComposition PreProc
+hi link rioRegexpString    Type
 
 let b:current_syntax = 'rio'
 
