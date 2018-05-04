@@ -16,7 +16,7 @@ syn keyword rioFunction map reduce head tail F T add addIndex adjust all allPass
             \ eqBy eqProps equals evolve filter find findIndex findLast findLastIndex flatten flip
             \ forEach forEachObjIndexed fromPairs groupBy groupWith gt gte has hasIn head identical
             \ identity ifElse inc indexBy indexOf init innerJoin insert insertAll intersection intersperse
-            \ into invert invertObj invoker is isEmpty isNil join juxt keys last lastIndexOf length
+            \ into invert invertObj invoker isNumber isString isObject isArray isEmpty isNil join juxt keys last lastIndexOf length
             \ lens lensIndex lensPath lensProp lift liftN lt lte map mapAccum mapAccumght mapObjIndexed
             \ match mathMod max maxBy mean median memoizeWith merge mergeAll mergeDeepLeft mergeDeepght
             \ mergeDeepWith mergeDeepWithKey mergeWith mergeWithKey min minBy modulo multiply nAry
